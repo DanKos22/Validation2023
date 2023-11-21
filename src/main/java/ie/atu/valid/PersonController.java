@@ -2,6 +2,7 @@ package ie.atu.valid;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,9 +15,10 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @PostMapping("/person/createPerson")
-    public String addPerson(@RequestBody @Valid Person person) {
-        return "Details added";
+    @PostMapping("/createPerson")
+    public ResponseEntity<String> addPerson(@RequestBody @Valid Person person) {
+        personService.savePerson(person);
+        return new ResponseEntity<>("Person created successfully", HttpStatus.OK);
     }
 
     @GetMapping("/person/{employeeId}")
