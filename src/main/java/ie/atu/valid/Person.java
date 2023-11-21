@@ -22,7 +22,6 @@ public class Person {
 
     @NotBlank(message = "Employee ID cannot be blank")
     @Size(max = 5, message = "ID cannot be greater than 5 characters")
-    @NotNull(message = "some")
     private String employeeId;
 
     @NotBlank(message = "Position cannot be blank")
