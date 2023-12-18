@@ -1,12 +1,23 @@
 package ie.atu.valid;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;                                    // Key is called id and it is a type long so it can store multiple keys
+
     @NotBlank(message = "Name cannot be blank")
     @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters")
     private String name;
